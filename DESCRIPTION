@@ -1,0 +1,9 @@
+Package: MATH4753PROJ
+Type: Package
+Title: R Package
+Version: 0.1.0
+Author: Jasmin Wilson
+Maintainer: Jasmin Wilson
+Description: Introduction to R
+Encoding: UTF-8
+LazyData: true

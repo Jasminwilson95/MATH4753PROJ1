@@ -1,0 +1,56 @@
+---
+title: "Package1"
+author: "Jasmin Wilson"
+date: "2023-04-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Constructor Function
+
+This is a constructor function that takes two vectors(x,y) and alpha and assuming the variances in the population are same for x and y, it will display the a data frame containing x and y, the confidence interval for mux-muy and pvalue
+
+```{r cars}
+summary(cars)
+```
+
+```{r pressure, echo=FALSE}
+myconstr= function(x,y,alpha){
+  length(x) <- length(y)
+  df = data.frame(x,y)
+  t = t.test(x, y, alternative="two.sided", mu=0, paired=FALSE, var.equal=TRUE, conf.level = 1-alpha)
+  obj=list(data =list(x=x, y=y),t=t)
+  class(obj) <-"Rttest"
+  obj
+}
+```
+```{r eval=TRUE}
+print.Rttest <- function(obj){
+  library(kableExtra)
+  x <- obj[["data"]][["x"]]
+  y <- obj[["data"]][["y"]]
+  df <- data.frame(x,y)
+  df %>%
+  kable() %>%
+  kable_styling()
+}
+```
+
+```{r eval=TRUE}
+set.seed(21);x <-rnorm(30,5,2); set.seed(23); y<- rnorm(30, 3,2); alpha <- 0.05
+obj <- myconstr(x = x, y = y, alpha = 0.05)
+class(obj)
+print(obj)
+print(obj$t)
+```
+In the result above :
+t is the t-test statistic value (t = 3.352555 ),
+df is the degrees of freedom (df= 58),
+p-value is the significance level of the t-test (p-value = 0.001414586).
+conf.int is the confidence interval of the means difference at 95% (conf.int = [0.6564034 2.6017659]);
+sample estimates is the mean value of the sample (mean = 4.943558 , 3.314473 ).
+
+
