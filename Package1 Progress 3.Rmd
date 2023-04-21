@@ -13,11 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is a constructor function that takes two vectors(x,y) and alpha and assuming the variances in the population are same for x and y, it will display the a data frame containing x and y, the confidence interval for mux-muy and pvalue
 
-```{r cars}
-summary(cars)
-```
-
-```{r pressure, echo=FALSE}
+```{r pressure, echo=TRUE}
 myconstr= function(x,y,alpha){
   length(x) <- length(y)
   df = data.frame(x,y)
@@ -41,16 +37,10 @@ print.Rttest <- function(obj){
 
 ```{r eval=TRUE}
 set.seed(21);x <-rnorm(30,5,2); set.seed(23); y<- rnorm(30, 3,2); alpha <- 0.05
-obj <- myconstr(x = x, y = y, alpha = 0.05)
-class(obj)
+obj <-MATH4753PROJ::myconstr(x=x,y=y,alpha = 0.05)
+library(MATH4753PROJ)
 print(obj)
-print(obj$t)
 ```
-In the result above :
-t is the t-test statistic value (t = 3.352555 ),
-df is the degrees of freedom (df= 58),
-p-value is the significance level of the t-test (p-value = 0.001414586).
-conf.int is the confidence interval of the means difference at 95% (conf.int = [0.6564034 2.6017659]);
-sample estimates is the mean value of the sample (mean = 4.943558 , 3.314473 ).
+
 
 
