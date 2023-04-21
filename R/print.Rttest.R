@@ -1,4 +1,4 @@
-#' Title
+#' Prints the x, y using the kable package
 #'
 #' @param obj -object
 #'
