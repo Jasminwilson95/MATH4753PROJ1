@@ -1,0 +1,62 @@
+---
+title: "Package1"
+author: "Jasmin Wilson"
+date: "2023-04-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Constructor Function
+
+This is a constructor function that takes two vectors(x,y) and alpha and assuming the variances in the population are same for x and y, it will display the a data frame containing x and y, the confidence interval for mux-muy and pvalue
+
+```{r pressure, echo=TRUE}
+myconstr= function(x,y,alpha){
+  length(x) <- length(y)
+  df = data.frame(x,y)
+  t = t.test(x, y, alternative="two.sided", mu=0, paired=FALSE, var.equal=TRUE, conf.level = 1-alpha)
+  obj=list(data =list(x=x, y=y),t=t)
+  class(obj) <-"Rttest"
+  obj
+}
+```
+```{r eval=TRUE}
+print.Rttest <- function(obj){
+  library(kableExtra)
+  x <- obj[["data"]][["x"]]
+  y <- obj[["data"]][["y"]]
+  df <- data.frame(x,y)
+  df %>%
+  kable() %>%
+  kable_styling()
+}
+```
+
+```{r eval=TRUE}
+plot.Rttest <- function(obj,...){
+  x <- obj[["data"]][["x"]]
+  y <- obj[["data"]][["y"]]
+  df <- data.frame(x,y)
+  library(ggplot2)
+  library(reshape2)
+  data_long = melt(df)
+
+  ggplot(data_long, aes(x=variable,y=value)) + geom_boxplot() +
+    labs(x="Population", y= "Samples")
+
+}
+```
+
+```{r eval=TRUE}
+set.seed(21);x <-rnorm(30,5,2); set.seed(23); y<- rnorm(30, 3,2); alpha <- 0.05
+obj <-MATH4753PROJ::myconstr(x=x,y=y,alpha = 0.05)
+library(MATH4753PROJ)
+print(obj)
+plot(obj)
+```
+
+
+
