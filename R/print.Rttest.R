@@ -6,7 +6,8 @@
 #' @export print.Rttest
 #'
 #' @examples
-#' \donotrun print(obj)
+#' \dontrun{
+#' print(obj)}
 print.Rttest <- function(obj,...){
   library(kableExtra)
   x <- obj[["data"]][["x"]]

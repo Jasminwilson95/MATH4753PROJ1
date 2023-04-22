@@ -8,8 +8,8 @@
 #' @export plot.Rttest
 #'
 #' @examples
-#' \donotrun {MATH4753PROJ::plot(obj)}
-plot.Rttest <- function(obj, ...){
+#' \dontrun{plot(obj)}
+plot.Rttest <- function(obj,...){
   x <- obj[["data"]][["x"]]
   y <- obj[["data"]][["y"]]
   df <- data.frame(x,y)
@@ -21,9 +21,4 @@ plot.Rttest <- function(obj, ...){
     labs(x="Population", y= "Samples")
 
 }
-
-set.seed(21);x <-rnorm(30,5,2); set.seed(23); y<- rnorm(30, 3,2); alpha <- 0.05
-obj <-MATH4753PROJ::myconstr(x=x,y=y,alpha = 0.05)
-library(MATH4753PROJ)
-plot(obj)
 

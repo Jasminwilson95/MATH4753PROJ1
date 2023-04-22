@@ -8,7 +8,8 @@
 #' @export
 #'
 #' @examples
-#' \dont {obj <- mypackage::myconstr(x=x,y=y,alpha = 0.05)}
+#' \dontrun{
+#' obj <- MATH4753PROJ::myconstr(x=x,y=y,alpha = 0.05)}
 myconstr= function(x,y,alpha){
   length(x) <- length(y)
   df = data.frame(x,y)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.Rttest.R
 \name{print.Rttest}
 \alias{print.Rttest}
-\title{Title}
+\title{Prints the x, y using the kable package}
 \usage{
 \method{print}{Rttest}(obj, ...)
 }
@@ -13,8 +13,9 @@
 a table with the data and the alpha value, confidentervaks and p-value
 }
 \description{
-Title
+Prints the x, y using the kable package
 }
 \examples{
-\donotrun print(obj)
+\dontrun{
+print(obj)}
 }
